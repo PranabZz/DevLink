@@ -69,8 +69,8 @@
             @endforeach
         </ul>
 
-        <a href="{{route('project.index')}}" class="btn btn-secondary">
-            <span class="span">Show More Posts</span>
+        <a href="{{route('project.createproject')}}" class="btn btn-secondary">
+            <span class="span">Create a new project</span>
 
             <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
         </a>

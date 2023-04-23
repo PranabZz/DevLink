@@ -6,7 +6,11 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\ProjectUserController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BlogUserController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\BlogController;
+
 
 
 /*
@@ -21,13 +25,19 @@ use App\Http\Controllers\Admin\EventController;
 */
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [ProjectUserController::class, 'index'])->name('index');
+    Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('logout', [UserAuthController::class, 'logout'])->name('user.logout');
-    Route::get('/home/project', [ProjectUserController::class, 'project_index'])->name('project.index');
-    Route::get('/home/project/view/{slug}/{project_id}/{project_user_id}', [ProjectUserController::class, 'view'])->name('project.view');
-    Route::get('/home/message/{message_to}', [MessageController::class, 'index'])->name('message');
-    Route::post('/home/message/{message_to}', [MessageController::class, 'send'])->name('message.send');
-    Route::get('/home/message/fetch/{message_to}', [MessageController::class, 'fetch'])->name('message.fetch');
+    Route::get('/project', [ProjectUserController::class, 'project_index'])->name('project');
+    Route::get('/project/create', [ProjectUserController::class, 'project_create'])->name('project.createproject');
+    Route::post('/project/create', [ProjectUserController::class, 'store'])->name('project.createproject');    
+    Route::get('/project/view/{slug}/{project_id}/{project_user_id}', [HomeController::class, 'project_view'])->name('project.view');
+    Route::get('/event/view/{event_id}', [HomeController::class, 'event_view'])->name('event.view');
+    Route::get('/blog', [BlogUserController::class, 'index'])->name('blog');
+    Route::get('/blog/view/{blog_id}', [BlogUserController::class, 'show'])->name('show');
+    Route::get('/contacts', [MessageController::class, 'view'])->name('contacts');
+    Route::get('/message/{message_to}', [MessageController::class, 'index'])->name('message');
+    Route::post('/message/{message_to}', [MessageController::class, 'send'])->name('message.send');
+    Route::get('/message/fetch/{message_to}', [MessageController::class, 'fetch'])->name('message.fetch');
 });
 
 Route::middleware(['guest'])->group(function () {
@@ -50,7 +60,13 @@ Route::prefix('admin')->group(function () {
 
         Route::resource('project', ProjectController::class);
         Route::resource('event', EventController::class);
+        Route::resource('blog', BlogController::class);
 
 
     });
+});
+
+
+Route::get('/blogs', function(){
+    return view('frontend.blog');
 });

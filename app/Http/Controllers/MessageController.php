@@ -21,7 +21,8 @@ class MessageController extends Controller
                 ->where('message_from', $message_to);
         })->get();
 
-        $contacts = Message::where('message_from', $user)->select('message_to')->distinct()->get();
+        $contacts = Message::where('message_to', $user)->select('message_from')->distinct()->get();
+
 
         $output = '';
         foreach ($messages as $message) {
@@ -37,6 +38,16 @@ class MessageController extends Controller
         }
 
         return view('frontend.message', compact('output', 'message_to', 'contacts'));
+    }
+
+
+    public function view()
+    {
+        $user = Auth::user()->name;
+
+        $contacts = Message::where('message_from', $user)->select('message_to')->distinct()->get();
+        $output = "";
+        return view('frontend.contacts', compact('contacts','output'));
     }
 
     public function send(Request $request, $message_to)

@@ -20,8 +20,8 @@
                     </div>
                     <div class="contacts p-2 flex-1 overflow-y-scroll">
                         @foreach($contacts as $contact )
-                        @if($contact->message_to != $contact->message_from)
-                        <a href="{{ route('message', $contact->message_to) }}">
+                        
+                        <a href="{{ route('message', $contact->message_from) }}">
                             <div
                                 class="flex justify-between items-center p-8 hover:bg-gray-800  hover:opacity-0.1 rounded-lg relative">
                                 <div class="w-16 h-16 relative flex flex-shrink-0">
@@ -29,11 +29,11 @@
                                         src="{{asset('images/images.png')}}" alt="" />
                                 </div>
                                 <div class="flex-auto min-w-0 ml-4 mr-6 hidden md:block">
-                                    <p>{{$contact->message_to}}</p>
+                                    <p>{{$contact->message_from}}</p>
                                 </div>
                             </div>
                         </a>
-                        @endif
+                       
                         @endforeach
                     </div>
                 </section>
@@ -47,7 +47,7 @@
                                     src="{{asset('images/images.png')}}" alt="" />
                             </div>
                             <div class="text-md">
-                                <p class="font-bold">{{$contact->message_to}}</p>
+                                <p class="font-bold">{{$message_to}}</p>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                                     @csrf
                                     <label class="flex">
                                         <input
-                                            class="rounded-full  py-2 pl-3 pr-10 w-full border border-gray-200 bg-gray-200 focus:bg-white focus:outline-none text-gray-600 focus:shadow-md transition duration-300 ease-in"
+                                            class="rounded-full  py-2 pl-3 pr-10 w-full border border-gray-200 bg-gray-200 focus:bg-white focus:outline-none text-gray-900 focus:shadow-md transition duration-300 ease-in"
                                             type="text" value="" placeholder="Aa" name="message" />
                                         <button type="submit"
                                             class="absoulute top-0 rounded-full ml-4 font-bold mt-2 mr-8 p-6 flex flex-shrink-0 justify-center items-center focus:outline-none bg-blue-800  hover:text-white w-8 h-8">

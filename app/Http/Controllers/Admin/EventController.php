@@ -86,7 +86,7 @@ class EventController extends Controller
 
         if (!$event) {
             return back()->with('error', 'Event not found');
-        }
+        }   
 
         $event->event_title = $request->input('event_title');
         $event->event_location = $request->input('event_location');

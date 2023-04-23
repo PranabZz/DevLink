@@ -15,23 +15,19 @@ class ProjectUserController extends Controller
     {
         $projects = Project::all();
         $events = Event::take(3)->get();
-        return view('frontend.home', compact('projects','events'));
+        return view('frontend.home', compact('projects', 'events'));
     }
 
-    public function project_index(){
+    public function project_index()
+    {
         $projects = Project::all();
         return view('frontend.project', compact('projects'));
-
     }
 
-
-    public function view(Request $request, $userId, $projectId)
-    {
-        $viewProject = Project::with('user')->where('project_id', $projectId)->firstOrFail();
-
-       return view('frontend.view',compact('viewProject'));
+    public function project_create(){
+        return view('frontend.project-create');
     }
-
+   
     public function store(Request $request)
     {
         $data = $request->only([
@@ -50,6 +46,7 @@ class ProjectUserController extends Controller
 
         $project = Project::create($data);
 
-        dd($data);
+        return back()->with('sucess','Sucessfully created');
+        // dd($request);
     }
 }

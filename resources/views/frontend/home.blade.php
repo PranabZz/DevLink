@@ -21,8 +21,8 @@
             </section>
 
             <!--
-                        - #TOPICS
-                      -->
+                            - #TOPICS
+                          -->
 
             <section class="topics" id="topics" aria-labelledby="topic-label">
                 <div class="container">
@@ -46,20 +46,20 @@
                             <ul class="slider-list" data-slider-container>
 
                                 <li class="slider-item">
-                                    @foreach($events as $event)
-                                    <a href="#" class="slider-card">
-                                        <figure class="slider-banner img-holder" style="height:250px; width:250px;">
-                                            <img src="{{asset('images/'.$event->event_thumbnail)}}" 
-                                                loading="lazy" alt="Sport" class="img-cover" style="">
-                                        </figure>
+                                    @foreach ($events as $event)
+                                        <a href="{{ route('event.view', $event->event_id) }}" class="slider-card">
+                                            <figure class="slider-banner img-holder" style="height:250px; width:250px;">
+                                                <img src="{{ asset('images/' . $event->event_thumbnail) }}" loading="lazy"
+                                                    alt="Sport" class="img-cover" style="">
+                                            </figure>
 
-                                        <div class="slider-content">
-                                            <span class="slider-title">{{$event->event_title}}</span>
+                                            <div class="slider-content">
+                                                <span class="slider-title">{{ $event->event_title }}</span>
 
-                                            <p class="slider-subtitle">{{$event->event_fees}}</p>
-                                        </div>
+                                                <p class="slider-subtitle">Rs.{{ $event->event_fees }}</p>
+                                            </div>
 
-                                    </a>
+                                        </a>
                                 </li>
                                 @endforeach
 
@@ -76,8 +76,8 @@
 
 
             <!--
-                        - #FEATURED PROJECT
-                      -->
+                            - #FEATURED PROJECT
+                          -->
 
             <section class="section feature" aria-label="feature" id="featured">
                 <div class="container">
@@ -92,61 +92,60 @@
 
                     <ul class="feature-list">
                         @foreach ($projects as $project)
-                      
-                        <li>
-                            <div class="card feature-card">
+                            <li>
+                                <div class="card feature-card">
 
-                                <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
-                                    <img src="{{asset('images/'.$project->thumbnail)}}" width="1602" height="903"
-                                        loading="lazy" alt="Self-observation is the first step of inner unfolding"
-                                        class="img-cover">
-                                </figure>
+                                    <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
+                                        <img src="{{ asset('images/' . $project->thumbnail) }}" width="1602" height="903"
+                                            loading="lazy" alt="Self-observation is the first step of inner unfolding"
+                                            class="img-cover">
+                                    </figure>
 
-                                <div class="card-content">
+                                    <div class="card-content">
 
-                                    <div class="card-wrapper">
-                                        <div class="card-tag">
-                                            <a href="#" class="span hover-2"># {{$project->category}} </a>
-                                        </div>
+                                        <div class="card-wrapper">
+                                            <div class="card-tag">
+                                                <a href="#" class="span hover-2"># {{ $project->category }} </a>
+                                            </div>
 
-                                        <div class="wrapper">
-                                            <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                                            <div class="wrapper">
+                                                <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
 
-                                            <span class="span">3 mins read</span>
-                                        </div>
-                                    </div>
-
-                                    <h3 class="headline headline-3">
-                                        <a href="#" class="card-title hover-2">
-                                            {{$project->project_title}}
-                                        </a>
-                                    </h3>
-
-                                    <div class="card-wrapper">
-
-                                        <div class="profile-card">
-                                            <img src="{{asset('images/images.png')}}" width="48" height="48"
-                                                loading="lazy"  class="profile-banner">
-
-                                            <div>
-                                                <p class="card-title">{{$project->user->name}}</p>
-
-                                                <p class="card-subtitle">25 Nov 2022</p>
+                                                <span class="span">3 mins read</span>
                                             </div>
                                         </div>
 
-                                        <a href="#" class="card-btn">Read more</a>
+                                        <h3 class="headline headline-3">
+                                            <a href="#" class="card-title hover-2">
+                                                {{ $project->project_title }}
+                                            </a>
+                                        </h3>
+
+                                        <div class="card-wrapper">
+
+                                            <div class="profile-card">
+                                                <img src="{{ asset('images/images.png') }}" width="48" height="48"
+                                                    loading="lazy" class="profile-banner">
+
+                                                <div>
+                                                    <p class="card-title">{{ $project->user->name }}</p>
+
+                                                    <p class="card-subtitle">25 Nov 2022</p>
+                                                </div>
+                                            </div>
+
+                                            <a href="#" class="card-btn">Read more</a>
+
+                                        </div>
 
                                     </div>
 
                                 </div>
-
-                            </div>
-                        </li>
+                            </li>
                         @endforeach
                     </ul>
 
-                    <a href="{{route('project.index')}}" class="btn btn-secondary">
+                    <a href="{{ route('project') }}" class="btn btn-secondary">
                         <span class="span">Show More Posts</span>
 
                         <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
@@ -178,8 +177,8 @@
                 </div>
             </section>
             <!--
-                        - #RECENT POST
-                      -->
+                            - #RECENT POST
+                          -->
 
             <section class="section recent-post" id="recent" aria-labelledby="recent-label">
                 <div class="container">
@@ -195,179 +194,47 @@
                         </p>
 
                         <ul class="grid-list">
+                            @foreach ($blogs as $blog)
+                                <a href="{{ route('show', $blog->blog_id) }}">
+                                    <li>
+                                        <div class="recent-post-card">
 
-                            <li>
-                                <div class="recent-post-card">
+                                            <figure class="card-banner img-holder" style="--width: 271; --height: 258;">
+                                                <img src="{{ asset('images/' . $blog->blog_thumbnail) }}" width="271"
+                                                    height="258" loading="lazy" alt="" class="img-cover">
+                                            </figure>
 
-                                    <figure class="card-banner img-holder" style="--width: 271; --height: 258;">
-                                        <img src="./assets/images/recent-post-1.jpg" width="271" height="258"
-                                            loading="lazy" alt="Helpful Tips for Working from Home as a Freelancer"
-                                            class="img-cover">
-                                    </figure>
+                                            <div class="card-content">
 
-                                    <div class="card-content">
+                                                <a href="#" class="card-badge">{{ $blog->blog_category }}</a>
 
-                                        <a href="#" class="card-badge">Working Tips</a>
+                                                <h3 class="headline headline-3 card-title">
+                                                    <a href="#" class="link hover-2">{{ $blog->blog_title }}</a>
+                                                </h3>
 
-                                        <h3 class="headline headline-3 card-title">
-                                            <a href="#" class="link hover-2">Helpful Tips for Working from Home as a
-                                                Freelancer</a>
-                                        </h3>
 
-                                        <p class="card-text">
-                                            Gosh jaguar ostrich quail one excited dear hello and bound and the and bland
-                                            moral misheard
-                                            roadrunner flapped lynx far that and jeepers giggled far and far
-                                        </p>
 
-                                        <div class="card-wrapper">
-                                            <div class="card-tag">
-                                                <a href="#" class="span hover-2"># Travel</a>
+                                                <div class="card-wrapper">
+                                                    <div class="card-tag">
+                                                        <a href="#"
+                                                            class="span hover-2">{{ $blog->blog_views }}</a>
 
-                                                <a href="#" class="span hover-2"># Lifestyle</a>
+                                                        <span class="span">{{ $blog->blog_author }}</span>
+
+                                                        <div class="wrapper">
+                                                            <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+
+                                                            <span class="span">3 mins read</span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
                                             </div>
-
-                                            <div class="wrapper">
-                                                <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-
-                                                <span class="span">3 mins read</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="recent-post-card">
-
-                                    <figure class="card-banner img-holder" style="--width: 271; --height: 258;">
-                                        <img src="./assets/images/recent-post-4.jpg" width="271" height="258"
-                                            loading="lazy" alt="Helpful Tips for Working from Home as a Freelancer"
-                                            class="img-cover">
-                                    </figure>
-
-                                    <div class="card-content">
-
-                                        <a href="#" class="card-badge">Working Tips</a>
-
-                                        <h3 class="headline headline-3 card-title">
-                                            <a href="#" class="link hover-2">Helpful Tips for Working from Home as a
-                                                Freelancer</a>
-                                        </h3>
-
-                                        <p class="card-text">
-                                            Gosh jaguar ostrich quail one excited dear hello and bound and the and bland
-                                            moral misheard
-                                            roadrunner flapped lynx far that and jeepers giggled far and far
-                                        </p>
-
-                                        <div class="card-wrapper">
-                                            <div class="card-tag">
-                                                <a href="#" class="span hover-2"># Travel</a>
-
-                                                <a href="#" class="span hover-2"># Lifestyle</a>
-                                            </div>
-
-                                            <div class="wrapper">
-                                                <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-
-                                                <span class="span">3 mins read</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="recent-post-card">
-
-                                    <figure class="card-banner img-holder" style="--width: 271; --height: 258;">
-                                        <img src="./assets/images/recent-post-5.jpg" width="271" height="258"
-                                            loading="lazy" alt="Helpful Tips for Working from Home as a Freelancer"
-                                            class="img-cover">
-                                    </figure>
-
-                                    <div class="card-content">
-
-                                        <a href="#" class="card-badge">Working Tips</a>
-
-                                        <h3 class="headline headline-3 card-title">
-                                            <a href="#" class="link hover-2">Helpful Tips for Working from Home as a
-                                                Freelancer</a>
-                                        </h3>
-
-                                        <p class="card-text">
-                                            Gosh jaguar ostrich quail one excited dear hello and bound and the and bland
-                                            moral misheard
-                                            roadrunner flapped lynx far that and jeepers giggled far and far
-                                        </p>
-
-                                        <div class="card-wrapper">
-                                            <div class="card-tag">
-                                                <a href="#" class="span hover-2"># Travel</a>
-
-                                                <a href="#" class="span hover-2"># Lifestyle</a>
-                                            </div>
-
-                                            <div class="wrapper">
-                                                <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-
-                                                <span class="span">3 mins read</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </li>
-
+                                    </li>
+                                </a>
+                            @endforeach
                         </ul>
-
-                    </div>
-
-                    <div class="post-aside grid-list">
-
-                        <div class="card aside-card">
-
-                            <h3 class="headline headline-2 aside-title">
-                                <span class="span">Popular Posts</span>
-                            </h3>
-
-                            <ul class="popular-list">
-
-                                <li>
-                                    <div class="popular-card">
-
-                                        <figure class="card-banner img-holder" style="--width: 64; --height: 64;">
-                                            <img src="./assets/images/popular-post-1.jpg" width="64" height="64"
-                                                loading="lazy" alt="Creating is a privilege but it’s also a gift"
-                                                class="img-cover">
-                                        </figure>
-
-                                        <div class="card-content">
-
-                                            <h4 class="headline headline-4 card-title">
-                                                <a href="#" class="link hover-2">Creating is a privilege but it’s
-                                                    also a gift</a>
-                                            </h4>
-
-                                            <div class="warpper">
-                                                <p class="card-subtitle">15 mins read</p>
-
-                                                <time class="publish-date" datetime="2022-04-15">15 April 2022</time>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </li>
-                            </ul>
-
-                        </div>
 
                     </div>
             </section>

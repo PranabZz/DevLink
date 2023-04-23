@@ -33,8 +33,13 @@
                         <label>Password
                             <input placeholder="Password" type="password" name="password" />
                         </label><br>
-                        <div class="mb-9">
-                            <button class="btn btn-primary">Login</button>
+                        <div class="form-footer">
+                            <div>
+                                <button class="btn btn-primary">Login</button>
+                            </div>
+                            <div>
+                                <a href="{{ route('register') }}">Create a new account?</a>
+                            </div>
                         </div>
                     </form>
                 </div>

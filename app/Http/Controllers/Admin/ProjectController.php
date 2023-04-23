@@ -42,20 +42,28 @@ class ProjectController extends Controller
     public function update(Project $project, Request $request)
     {
 
-
-            $project->update([
-                'project_title' => $request->input('project_title'),
-                'project_slug' => $request->input('project_slug'),
-                'thumbnail' => $request->input('thumbnail'),
-                'category' => $request->input('category'),
-                'description' => $request->input('description'),
-                'dos' => $request->input('dos'),
-                'email' => $request->input('email'),
-                'code' => $request->input('code'),
-                'fee' => $request->input('fee'),
-                'user_id' => Auth::user()->user_id,
-            ]);
-
+            $project->project_title = $request->input('project_title');
+            $project->project_slug = $request->input('project_slug');
+            $project->description = $request->input('description');
+            $project->category = $request->input('category');
+            $project->email = $request->input('email');
+            $project->code = $request->input('code');
+            $project->fees = $request->input('fees');
+            $project->dos = $request->input('dos');
+            $project->user_id = Auth::user()->user_id;
+    
+    
+            if ($request->hasFile('thumbnail')) {
+     
+                $file = $request->file('thumbnail');
+                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('images'), $filename);
+                $project->thumbnail = $filename;
+            }
+    
+            $project->save();
+    
+            return back()->with('success', 'Successfully updated');
             
         
     }

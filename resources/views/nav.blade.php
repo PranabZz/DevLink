@@ -75,11 +75,11 @@
                     <ul class="navbar-list">
 
                         <li>
-                            <a href="#home" class="navbar-link hover-1" data-nav-toggler>Home</a>
+                            <a href="{{route('index')}}" class="navbar-link hover-1" data-nav-toggler>Home</a>
                         </li>
 
                         <li>
-                            <a href="#topics" class="navbar-link hover-1" data-nav-toggler>Projects</a>
+                            <a href="{{route('project')}}" class="navbar-link hover-1" data-nav-toggler>Projects</a>
                         </li>
 
                         <li>
@@ -87,11 +87,11 @@
                         </li>
 
                         <li>
-                            <a href="#recent" class="navbar-link hover-1" data-nav-toggler>Blogs</a>
+                            <a href="{{route('blog')}}" class="navbar-link hover-1" data-nav-toggler>Blogs</a>
                         </li>
 
                         <li>
-                            <a href="#" class="navbar-link hover-1" data-nav-toggler>Contact</a>
+                            <a href="{{route('contacts')}}" class="navbar-link hover-1" data-nav-toggler>Contact</a>
                         </li>
 
                     </ul>

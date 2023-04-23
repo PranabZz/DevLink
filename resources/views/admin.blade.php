@@ -44,6 +44,11 @@
                                     <h5>Events</h5>
                                 </a>
                             </div>
+                            <div class=" nav-option">
+                                <a href="{{ URL('admin/blog') }}">
+                                    <h5>Blogs</h5>
+                                </a>
+                            </div>
                             <div class="nav-option logout">
                                 <a href="{{ route('admin.logout') }}">
                                     <h5>Logout</h5>

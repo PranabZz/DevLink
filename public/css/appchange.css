@@ -1643,3 +1643,19 @@ input {
     border-bottom-color: blue;
     left: 40%;
 }
+
+.project-footer{
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    border:2px solid;
+    border-color: var(--bg-wild-blue-yonder);
+    
+    padding:25px;
+    margin-bottom: 25px;
+}
+
+.icon-footer{
+    display: flex;
+    justify-content: end;
+}
