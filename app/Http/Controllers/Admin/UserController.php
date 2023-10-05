@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Blog;
 
 
 class UserController extends Controller
@@ -20,7 +21,10 @@ class UserController extends Controller
     public function index()
     {
         $data['title'] = 'Home';
-        return view('admin.dashboard', $data);
+
+        $blogs = Blog::count();
+
+        return view('admin.dashboard', $data , compact('blogs'));
     }
 
     public function register()

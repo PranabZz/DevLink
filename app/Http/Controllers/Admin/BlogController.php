@@ -69,7 +69,7 @@ class BlogController extends Controller
     {
         //
         $data['title'] = 'Projects Create';
-        
+
         return view('admin.blogs.update', $data, compact('blog'));
     }
 
@@ -87,7 +87,7 @@ class BlogController extends Controller
         $blog->blog_author = $request->input('blog_author');
 
         if ($request->hasFile('blog_thumbnail')) {
- 
+
             $file = $request->file('blog_thumbnail');
             $filename = uniqid() . '_' . $file->getClientOriginalName();
             $file->move(public_path('images'), $filename);

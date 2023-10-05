@@ -15,12 +15,12 @@
                                         type="text" value="" placeholder="Search Messenger" />
 
                                 </label>
-                            </div>
+                             </div>
                         </form>
                     </div>
                     <div class="contacts p-2 flex-1 overflow-y-scroll">
                         @foreach($contacts as $contact )
-                        
+
                         <a href="{{ route('message', $contact->message_from) }}">
                             <div
                                 class="flex justify-between items-center p-8 hover:bg-gray-800  hover:opacity-0.1 rounded-lg relative">
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                         </a>
-                       
+
                         @endforeach
                     </div>
                 </section>
@@ -110,29 +110,60 @@
                 </section>
             </main>
         </div>
-    
+
 
     </body>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+
         $(document).ready(function() {
+
+            var userScrolled = false;
+            $(".chat-body").scrollTop($(".chat-body")[0].scrollHeight);
+            $(".chat-body").on("scroll", function() {
+                if ($(this).scrollTop() < $(this)[0].scrollHeight - $(this).height()) {
+                    userScrolled = true;
+                } else {
+                    userScrolled = false;
+                }
+            });
+
             setInterval(function() {
                 $.ajax({
                     url: "{{ route('message.fetch', $message_to) }}",
                     type: "GET",
                     success: function(response) {
                         $("#message_area").html(response.output);
+                        if (!userScrolled) {
+                            $(".chat-body").scrollTop($(".chat-body")[0].scrollHeight);
+                        }
                     },
                     error: function(xhr) {
                         console.log(xhr.responseText);
                     }
                 });
-                $(".chat-body").scrollTop($(".chat-body")[0].scrollHeight);
             }, 700);
+
+            $('form').submit(function(event) {
+                event.preventDefault();
+
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    data: formData,
+                    success: function(response) {
+
+                    },
+                    error: function(xhr, status, error) {
+
+                    }
+                });
+            });
         });
     </script>
-
 
     </html>
 @endsection

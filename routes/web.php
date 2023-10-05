@@ -61,12 +61,6 @@ Route::prefix('admin')->group(function () {
         Route::resource('project', ProjectController::class);
         Route::resource('event', EventController::class);
         Route::resource('blog', BlogController::class);
-
-
     });
 });
 
-
-Route::get('/blogs', function(){
-    return view('frontend.blog');
-});
